@@ -13,9 +13,15 @@ const difficultyLabels = {
 }
 
 const difficultyColors = {
-  beginner: '#10b981',
-  intermediate: '#f59e0b',
-  advanced: '#ef4444',
+  beginner: 'var(--green)',
+  intermediate: 'var(--amber)',
+  advanced: 'var(--rose)',
+}
+
+const difficultyBg = {
+  beginner: 'var(--green-subtle)',
+  intermediate: 'var(--amber-subtle)',
+  advanced: 'var(--rose-subtle)',
 }
 
 function CodeBlock({ language, code }) {
@@ -28,11 +34,14 @@ function CodeBlock({ language, code }) {
   }
 
   return (
-    <div className="code-block">
+    <div className="code-block" data-lang={language}>
       <div className="code-header">
         <span className="code-lang">{language}</span>
         <button className="copy-btn" onClick={handleCopy}>
-          {copied ? <><Check size={14} /> Copied</> : <><Copy size={14} /> Copy</>}
+          {copied
+            ? <><Check size={13} /> Copied</>
+            : <><Copy size={13} /> Copy</>
+          }
         </button>
       </div>
       <SyntaxHighlighter
@@ -40,8 +49,11 @@ function CodeBlock({ language, code }) {
         style={oneDark}
         customStyle={{
           margin: 0,
-          borderRadius: '0 0 8px 8px',
-          fontSize: '0.875rem',
+          borderRadius: '0 0 10px 10px',
+          fontSize: '0.84rem',
+          lineHeight: '1.65',
+          padding: '16px 18px 16px 22px',
+          background: '#131720',
         }}
       >
         {code.trim()}
@@ -68,7 +80,7 @@ function parseMarkdown(text) {
         codeLines.push(lines[i])
         i++
       }
-      i++ // skip closing ```
+      i++
       elements.push(
         <CodeBlock key={key++} language={lang} code={codeLines.join('\n')} />
       )
@@ -174,11 +186,8 @@ function parseInline(text) {
   let key = 0
 
   while (remaining.length > 0) {
-    // Bold
     const boldMatch = remaining.match(/\*\*(.+?)\*\*/)
-    // Italic
     const italicMatch = remaining.match(/\*(.+?)\*/)
-    // Inline code
     const codeMatch = remaining.match(/`([^`]+)`/)
 
     const matches = [
@@ -222,18 +231,21 @@ export default function LessonContent({ lesson, isCompleted, onToggle, onPrev, o
         <div className="lesson-header-top">
           <span
             className="difficulty-badge"
-            style={{ background: `${difficultyColors[lesson.difficulty]}20`, color: difficultyColors[lesson.difficulty] }}
+            style={{
+              background: difficultyBg[lesson.difficulty],
+              color: difficultyColors[lesson.difficulty],
+            }}
           >
-            <BarChart3 size={14} />
+            <BarChart3 size={13} />
             {difficultyLabels[lesson.difficulty]}
           </span>
           <span className="duration-badge">
-            <Clock size={14} />
+            <Clock size={13} />
             {lesson.duration}
           </span>
         </div>
         <h1 className="lesson-h1">{lesson.title}</h1>
-        <p className="lesson-module">Module: {lesson.module}</p>
+        <p className="lesson-module">{lesson.module}</p>
       </header>
 
       <div className="lesson-body">
@@ -246,17 +258,17 @@ export default function LessonContent({ lesson, isCompleted, onToggle, onPrev, o
           onClick={onToggle}
         >
           {isCompleted
-            ? <><CheckCircle2 size={18} /> Completed</>
-            : <><Circle size={18} /> Mark as Complete</>
+            ? <><CheckCircle2 size={17} /> Completed</>
+            : <><Circle size={17} /> Mark as Complete</>
           }
         </button>
 
         <div className="nav-buttons">
           <button className="nav-btn" disabled={!hasPrev} onClick={onPrev}>
-            <ChevronLeft size={18} /> Previous
+            <ChevronLeft size={17} /> Previous
           </button>
           <button className="nav-btn" disabled={!hasNext} onClick={onNext}>
-            Next <ChevronRight size={18} />
+            Next <ChevronRight size={17} />
           </button>
         </div>
       </footer>

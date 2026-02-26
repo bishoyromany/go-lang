@@ -1,27 +1,31 @@
 import { useNavigate } from 'react-router-dom'
-import { BookOpen, Clock, BarChart3, ChevronRight, Zap, Server, Terminal, TestTubes, Database, Rocket } from 'lucide-react'
+import {
+  BookOpen, Clock, BarChart3, ChevronRight, Zap,
+  Server, Terminal, TestTubes, Database, Rocket,
+  Layers, Cpu, Package, FileCode
+} from 'lucide-react'
 import { useSEO } from '../hooks/useSEO'
 import tutorials, { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '../data/tutorials'
 import { useEffect } from 'react'
 
 const moduleIcons = {
   'Foundations': BookOpen,
-  'Data Structures': Database,
-  'Interfaces & Generics': Zap,
+  'Data Structures': Layers,
+  'Interfaces & Generics': Cpu,
   'Concurrency': Zap,
   'Error Handling': Terminal,
-  'Packages & Modules': Server,
-  'Standard Library': Server,
+  'Packages & Modules': Package,
+  'Standard Library': FileCode,
   'Testing': TestTubes,
   'Database': Database,
-  'Advanced Patterns': Rocket,
+  'Advanced Patterns': Server,
   'Production': Rocket,
 }
 
 const difficultyColors = {
-  beginner: '#10b981',
-  intermediate: '#f59e0b',
-  advanced: '#ef4444',
+  beginner: 'var(--green)',
+  intermediate: 'var(--amber)',
+  advanced: 'var(--rose)',
 }
 
 export default function HomePage({ isCompleted }) {
@@ -35,7 +39,6 @@ export default function HomePage({ isCompleted }) {
     type: 'home',
   })
 
-  // Course structured data for homepage
   useEffect(() => {
     const script = document.createElement('script')
     script.id = 'ld-course'
@@ -46,24 +49,11 @@ export default function HomePage({ isCompleted }) {
       name: SITE_NAME,
       description: SITE_DESCRIPTION,
       url: SITE_URL,
-      provider: {
-        '@type': 'Organization',
-        name: 'GoTutor',
-        url: SITE_URL,
-      },
+      provider: { '@type': 'Organization', name: 'GoTutor', url: SITE_URL },
       inLanguage: 'en',
       isAccessibleForFree: true,
       numberOfLessons: tutorials.length,
-      hasCourseInstance: {
-        '@type': 'CourseInstance',
-        courseMode: 'online',
-        courseWorkload: 'PT10H',
-      },
-      syllabusSections: modules.map(mod => ({
-        '@type': 'Syllabus',
-        name: mod,
-        numberOfLessons: tutorials.filter(t => t.module === mod).length,
-      })),
+      hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'online', courseWorkload: 'PT10H' },
       teaches: [
         'Go programming language', 'Golang concurrency', 'Go interfaces',
         'Go generics', 'Go testing', 'Go error handling', 'Go REST APIs',
@@ -72,7 +62,6 @@ export default function HomePage({ isCompleted }) {
     })
     document.head.appendChild(script)
 
-    // ItemList for lessons
     const listScript = document.createElement('script')
     listScript.id = 'ld-itemlist'
     listScript.type = 'application/ld+json'
@@ -114,15 +103,15 @@ export default function HomePage({ isCompleted }) {
         </p>
         <div className="hero-stats">
           <div className="hero-stat">
-            <BookOpen size={18} />
+            <BookOpen size={17} />
             <span><strong>25</strong> Lessons</span>
           </div>
           <div className="hero-stat">
-            <Clock size={18} />
+            <Clock size={17} />
             <span><strong>{totalDuration}</strong> Minutes</span>
           </div>
           <div className="hero-stat">
-            <BarChart3 size={18} />
+            <BarChart3 size={17} />
             <span><strong>11</strong> Modules</span>
           </div>
         </div>
@@ -131,7 +120,7 @@ export default function HomePage({ isCompleted }) {
           navigate(`/lesson/${first.slug}`)
         }}>
           {completedCount > 0 ? 'Continue Learning' : 'Start Learning'}
-          <ChevronRight size={18} />
+          <ChevronRight size={17} />
         </button>
         {completedCount > 0 && (
           <p className="hero-progress">{completedCount} of 25 lessons completed</p>
@@ -149,11 +138,13 @@ export default function HomePage({ isCompleted }) {
               <div key={mod} className="module-card">
                 <div className="module-card-header">
                   <div className="module-card-icon">
-                    <Icon size={20} />
+                    <Icon size={19} />
                   </div>
                   <div>
                     <h3 className="module-card-title">{mod}</h3>
-                    <span className="module-card-count">{lessons.length} lessons &middot; {done}/{lessons.length} done</span>
+                    <span className="module-card-count">
+                      {lessons.length} lesson{lessons.length > 1 ? 's' : ''} &middot; {done}/{lessons.length} done
+                    </span>
                   </div>
                 </div>
                 <ul className="module-card-lessons">

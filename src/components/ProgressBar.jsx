@@ -5,14 +5,14 @@ export default function ProgressBar({ percentage, completed, total, onReset }) {
     <div className="progress-bar-container">
       <div className="progress-header">
         <div className="progress-label">
-          <Trophy size={16} />
-          <span>{completed} of {total} lessons completed</span>
+          <Trophy size={15} />
+          <span>{completed} of {total} lessons</span>
         </div>
         <div className="progress-right">
           <span className="progress-pct">{percentage}%</span>
           {completed > 0 && (
             <button className="reset-btn" onClick={onReset} title="Reset progress">
-              <RotateCcw size={14} />
+              <RotateCcw size={13} />
             </button>
           )}
         </div>
