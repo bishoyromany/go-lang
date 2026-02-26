@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0f1117"/>
+  <rect x="40" y="40" width="1120" height="550" rx="20" fill="#161922" stroke="#2a2d3e" stroke-width="2"/>
+  <rect x="80" y="120" width="80" height="40" rx="8" fill="#00ADD8"/>
+  <text x="120" y="148" font-family="system-ui, sans-serif" font-size="22" font-weight="800" fill="white" text-anchor="middle">Go</text>
+  <text x="80" y="220" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="#e4e6f0">The Complete Go</text>
+  <text x="80" y="285" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="#e4e6f0">Programming Tutorial</text>
+  <text x="80" y="340" font-family="system-ui, sans-serif" font-size="22" fill="#9095a8">Learn Golang from beginner to advanced &bull; 25 in-depth lessons</text>
+  <text x="80" y="380" font-family="system-ui, sans-serif" font-size="22" fill="#9095a8">Concurrency &bull; Generics &bull; Testing &bull; Production APIs</text>
+  <rect x="80" y="430" width="140" height="44" rx="22" fill="#10b98133" stroke="#10b981" stroke-width="1.5"/>
+  <text x="150" y="458" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#10b981" text-anchor="middle">Beginner</text>
+  <rect x="240" y="430" width="170" height="44" rx="22" fill="#f59e0b33" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="325" y="458" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#f59e0b" text-anchor="middle">Intermediate</text>
+  <rect x="430" y="430" width="150" height="44" rx="22" fill="#ef444433" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="505" y="458" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#ef4444" text-anchor="middle">Advanced</text>
+  <text x="80" y="540" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#00ADD8">gotutor.dev</text>
+</svg>
